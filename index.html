@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Forex News Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <rect width="40" height="40" rx="8" fill="#2563eb"/>
+                        <path d="M10 15h20M10 20h15M10 25h20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <h1>Real-Time News Analyzer</h1>
+                </div>
+                <div class="header-info">
+                    <div class="status">
+                        <div class="status-indicator" id="connectionStatus"></div>
+                        <span id="statusText">Connecting...</span>
+                    </div>
+                    <div class="last-update">
+                        Last Update: <span id="lastUpdate">-</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Alert Banner -->
+        <div class="alert-banner" id="alertBanner" style="display: none;">
+            <div class="alert-content">
+                <span class="alert-icon">⚡</span>
+                <span id="alertMessage"></span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Currency:</label>
+                    <select id="currencyFilter">
+                        <option value="all">All Currencies</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="JPY">JPY</option>
+                        <option value="AUD">AUD</option>
+                        <option value="NZD">NZD</option>
+                        <option value="CAD">CAD</option>
+                        <option value="CHF">CHF</option>
+                        <option value="CNY">CNY</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Impact:</label>
+                    <select id="impactFilter">
+                        <option value="all">All Impact</option>
+                        <option value="high">High Impact Only</option>
+                        <option value="medium">Medium & High</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Direction:</label>
+                    <select id="directionFilter">
+                        <option value="all">All Directions</option>
+                        <option value="BULLISH">Bullish</option>
+                        <option value="BEARISH">Bearish</option>
+                        <option value="NEUTRAL">Neutral</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Min Confidence:</label>
+                    <select id="confidenceFilter">
+                        <option value="0">All (0%+)</option>
+                        <option value="40">Medium (40%+)</option>
+                        <option value="60">High (60%+)</option>
+                        <option value="80">Very High (80%+)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Statistics Dashboard -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total News</div>
+                    <div class="stat-value" id="totalNews">0</div>
+                </div>
+                <div class="stat-card high">
+                    <div class="stat-label">High Impact</div>
+                    <div class="stat-value" id="highImpactCount">0</div>
+                </div>
+                <div class="stat-card bullish">
+                    <div class="stat-label">Bullish Signals</div>
+                    <div class="stat-value" id="bullishCount">0</div>
+                </div>
+                <div class="stat-card bearish">
+                    <div class="stat-label">Bearish Signals</div>
+                    <div class="stat-value" id="bearishCount">0</div>
+                </div>
+            </div>
+
+            <!-- News Feed -->
+            <div class="news-section">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z"/>
+                    </svg>
+                    Live News Feed
+                </h2>
+                <div id="newsFeed" class="news-feed">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading real-time news data...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
