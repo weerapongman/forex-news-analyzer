@@ -9,7 +9,7 @@ import * as cheerio from 'cheerio';
 import cron from 'node-cron';
 import Sentiment from 'sentiment';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { dirname, join } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -109,6 +109,11 @@ const HIGH_IMPACT_INDICATORS = [
 // Serve static files
 app.use(express.static(__dirname));
 app.use(express.json());
+
+// Root route - serve index.html
+app.get('/', (req, res) => {
+  res.sendFile(join(__dirname, 'index.html'));
+});
 
 // WebSocket handler
 wss.on('connection', (ws) => {
